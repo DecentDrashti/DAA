@@ -13,7 +13,18 @@ void krushkals(int V ,int E,struct Edge edges[]){
     int edge=0;
     struct Edge mst[V-1];
     for(int i=0;i<V;i++){
-        
+        int u=edges[i].source;
+        int v=edges[i].dest;
+
+        int ucomp=find(parent,u);
+        int vcomp=find(parent,v);
+
+        if(ucomp!=vcomp){
+            mst[edge]=edges[i];
+            unionSet(parent,ucomp,vcomp);
+            edge++;
+        }
+        if(edge==V-1)break;
     }
 }
 
